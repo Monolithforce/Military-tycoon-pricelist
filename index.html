@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Military Tycoon: Поколение Z</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: url('camo-background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            color: #f4f4f9;
+        }
+        header {
+            background-color: rgba(0, 0, 128, 0.8);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 5px solid #00f;
+        }
+        header h1 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 10px;
+        }
+        .card {
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 2px solid #007BFF;
+            border-radius: 12px;
+            margin: 15px 0;
+            padding: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .card img {
+            width: 180px;
+            height: 120px;
+            object-fit: cover;
+            margin-right: 20px;
+            border-radius: 8px;
+        }
+        .card h3 {
+            margin: 0 0 10px;
+            color: #007BFF;
+        }
+        .card p {
+            margin: 5px 0;
+        }
+        .card .price {
+            font-weight: bold;
+            color: #00f;
+        }
+        .card ul {
+            padding-left: 20px;
+        }
+        .card ul li {
+            margin-bottom: 5px;
+            color: #444;
+        }
+        .card .positive {
+            color: #28a745;
+            font-weight: bold;
+        }
+        .card .negative {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        .card .value {
+            color: #ffc107;
+            font-weight: bold;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: rgba(0, 0, 128, 0.8);
+            color: #f4f4f9;
+        }
+        footer p {
+            margin: 0;
+        }
+        .search-container {
+            text-align: center;
+            margin: 20px;
+        }
+        .search-container input {
+            padding: 10px;
+            width: 70%;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+        .search-container button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .autocomplete-suggestions {
+            position: absolute;
+            background: white;
+            border: 1px solid #ddd;
+            max-width: 70%;
+            margin: 0 auto;
+            z-index: 1000;
+        }
+        .autocomplete-suggestions div {
+            padding: 10px;
+            cursor: pointer;
+        }
+        .autocomplete-suggestions div:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Military Tycoon: Поколение Z</h1>
+    </header>
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Введите название техники" oninput="showSuggestions()">
+        <button onclick="searchTechniques()">Поиск</button>
+        <div class="autocomplete-suggestions" id="suggestions"></div>
+    </div>
+    <div class="container">
+        <div class="card">
+            <img src="bismarck.jpg" alt="LE1000 Bismarck">
+            <div class="details">
+                <h3>LE1000 Bismarck</h3>
+                <p class="price">Цена: N/A или 300k gems</p>
+                <p><strong class="positive">Плюсы:</strong></p>
+                <ul>
+                    <li>Powerful arsenal (if nuke)</li>
+                </ul>
+                <p><strong class="negative">Минусы:</strong></p>
+                <ul>
+                    <li>Slow speed</li>
+                    <li>Can't dodge a lot of air vehicles</li>
+                </ul>
+                <p><strong class="value">Ценность:</strong> 100/100</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="izumo.jpg" alt="LE1000IZUMO">
+            <div class="details">
+                <h3>LE1000IZUMO</h3>
+                <p class="price">Цена: N/A или 200k gems</p>
+                <p><strong class="positive">Плюсы:</strong></p>
+                <ul>
+                    <li>Healing zone</li>
+                </ul>
+                <p><strong class="negative">Минусы:</strong></p>
+                <ul>
+                    <li>Low speed</li>
+                    <li>Bad arsenal</li>
+                </ul>
+                <p><strong class="value">Ценность:</strong> 99/100</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="blackbird.jpg" alt="LE1000BlackBird">
+            <div class="details">
+                <h3>LE1000BlackBird</h3>
+                <p class="price">Цена: N/A или 275k gems</p>
+                <p><strong class="positive">Плюсы:</strong></p>
+                <ul>
+                    <li>Fastest vehicle in the game</li>
+                    <li>Not bad arsenal</li>
+                </ul>
+                <p><strong class="negative">Минусы:</strong></p>
+                <ul>
+                    <li>A relatively bad drone (B2 can dodge)</li>
+                    <li>Low HP</li>
+                </ul>
+                <p><strong class="value">Ценность:</strong> 98/100</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="f22.jpg" alt="F22 Super Raptor">
+            <div class="details">
+                <h3>F22 Super Raptor</h3>
+                <p class="price">Цена: 45k gems (with 0 stars)</p>
+                <p><strong class="positive">Плюсы:</strong></p>
+                <ul>
+                    <li>Super sonic dodge</li>
+                    <li>Super sonic missiles</li>
+                    <li>Good minigun</li>
+                    <li>8 normal missiles</li>
+                </ul>
+                <p><strong class="negative">Минусы:</strong></p>
+                <ul>
+                    <li>None</li>
+                </ul>
+                <p><strong class="value">Ценность:</strong> 97/100</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="ahrlac.jpg" alt="Super AHRLAC">
+            <div class="details">
+                <h3>Super AHRLAC</h3>
+                <p class="price">Цена: 50k gems (with 0 stars)</p>
+                <p><strong class="positive">Плюсы:</strong></p>
+                <ul>
+                    <li>Best missiles in the game</li>
+                </ul>
+                <p><strong class="negative">Минусы:</strong></p>
+                <ul>
+                    <li>Low speed</li>
+                    <li>Middle HP</li>
+                </ul>
+                <p><strong class="value">Ценность:</strong> 96/100</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="skyhammer.jpg" alt="Skyhammer">
+            <div class="details">
+                <h3>Skyhammer</h3>
+                <p class="price">Цена: 55k gems (with zero stars)</p>
+                <p><strong class="positive">Плюсы:</strong></p>
+                <ul>
+                    <li>Insane miniguns</li>
+                    <li>Orbital strike</li>
+                    <li>Agile</li>
+                </ul>
+                <p><strong class="negative">Минусы:</strong></p>
+                <ul>
+                    <li>A relatively easy target for sets of air vehicles</li>
+                </ul>
+                <p><strong class="value">Ценность:</strong> 95/100</p>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2025 Military Tycoon. Все права защищены.</p>
+    </footer>
+    <script>
+        const data = [
+            "LE1000 Bismarck",
+            "LE1000IZUMO",
+            "LE1000BlackBird",
+            "F22 Super Raptor",
+            "Super AHRLAC",
+            "Skyhammer"
+        ];
+
+        function showSuggestions() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const suggestions = document.getElementById('suggestions');
+            suggestions.innerHTML = '';
+
+            if (input) {
+                const matches = data.filter(item => item.toLowerCase().includes(input));
+                matches.forEach(match => {
+                    const div = document.createElement('div');
+                    div.textContent = match;
+                    div.onclick = () => {
+                        document.getElementById('searchInput').value = match;
+                        suggestions.innerHTML = '';
+                        searchTechniques();
+                    };
+                    suggestions.appendChild(div);
+                });
+            }
+        }
+
+        function searchTechniques() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.card');
+
+            cards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                if (title.includes(input)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
